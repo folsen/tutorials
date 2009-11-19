@@ -1,0 +1,1348 @@
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUploads (20091102214719)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "uploads" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091102214719')[0m
+Migrating to AddAttachmentsAttachmentToUpload (20091102214749)
+  [4;36;1mSQL (1.2ms)[0m   [0;1mALTER TABLE "uploads" ADD "attachment_file_name" varchar(255)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mALTER TABLE "uploads" ADD "attachment_content_type" varchar(255)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mALTER TABLE "uploads" ADD "attachment_file_size" integer[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mALTER TABLE "uploads" ADD "attachment_updated_at" datetime[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091102214749')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("uploads")[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-02 22:51:23) [GET]
+
+NameError (uninitialized constant UploadsControllerController):
+  
+
+Rendered rescues/_trace (46.2ms)
+Rendered rescues/_request_and_response (1.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UploadsController#new (for 127.0.0.1 at 2009-11-02 22:51:39) [GET]
+Rendering template within layouts/uploads
+Rendering uploads/new
+Completed in 139ms (View: 132, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 22:51:54) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"S71jhRH+hOMETpxSr7mS7oVotL0jQKyrsVV4Yegb+2I=", "upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6336.0>}}
+  [4;36;1mUpload Create (0.6ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('atomicphysics_summary.tex', '2009-11-02 21:51:54', 4367, '2009-11-02 21:51:54', '2009-11-02 21:51:54', 'application/x-tex')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/1/original/atomicphysics_summary.tex
+Redirected to http://localhost:3000/uploads/1
+Completed in 298ms (DB: 1) | 302 Found [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-02 22:51:54) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUpload Load (0.4ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 1) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 17ms (View: 9, DB: 0) | 200 OK [http://localhost/uploads/1]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:12:01) [POST]
+  Parameters: {"file"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6336.1>}
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered rescues/_trace (44.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (unprocessable_entity)
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:13:13) [POST]
+  Parameters: {"file"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6336.2>}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-02 22:13:13', NULL, NULL, '2009-11-02 22:13:13', NULL)[0m
+[paperclip] Saving attachments.
+Redirected to http://localhost:3000/uploads/2
+Completed in 15ms (DB: 0) | 302 Found [http://localhost/uploads/create]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-02 23:13:14) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 2) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 12ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/2]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:14:50) [POST]
+  Parameters: {"file"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.0>}
+  [4;36;1mUpload Create (0.7ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-02 22:14:50', NULL, NULL, '2009-11-02 22:14:50', NULL)[0m
+[paperclip] Saving attachments.
+Completed in 95ms (View: 66, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:18:47) [POST]
+  Parameters: {"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.1>}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-02 22:18:47', NULL, NULL, '2009-11-02 22:18:47', NULL)[0m
+[paperclip] Saving attachments.
+Completed in 17ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-02 23:19:33) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUpload Load (0.4ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 1) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 25ms (View: 15, DB: 0) | 200 OK [http://localhost/uploads/1]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:19:43) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.2>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:19:43', 2256, '2009-11-02 22:19:43', '2009-11-02 22:19:43', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/5/original/burkertm_te.txt
+Completed in 24ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-02 23:20:12) [GET]
+
+ActionController::RoutingError (No route matches "/documents/1/edit" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:27:13) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.3>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:27:13', 2256, '2009-11-02 22:27:13', '2009-11-02 22:27:13', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/6/original/burkertm_te.txt
+Completed in 26ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:27:33) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.4>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:27:33', 2256, '2009-11-02 22:27:33', '2009-11-02 22:27:33', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/7/original/burkertm_te.txt
+Completed in 27ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:28:55) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.1>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:28:55', 2256, '2009-11-02 22:28:55', '2009-11-02 22:28:55', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/8/original/burkertm_te.txt
+Completed in 27ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:29:14) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.2>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:29:15', 2256, '2009-11-02 22:29:15', '2009-11-02 22:29:15', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/9/original/burkertm_te.txt
+Completed in 25ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:56:33) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.5>}}
+  [4;36;1mUpload Create (0.4ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bernoulli_m_te.txt', '2009-11-02 22:56:33', 1792, '2009-11-02 22:56:33', '2009-11-02 22:56:33', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/10/original/bernoulli_m_te.txt
+Completed in 24ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:56:48) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.6>}}
+  [4;35;1mUpload Create (0.6ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:56:48', 2256, '2009-11-02 22:56:48', '2009-11-02 22:56:48', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/11/original/burkertm_te.txt
+Completed in 35ms (View: 5, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:57:31) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.7>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bernoulli_m_te.txt', '2009-11-02 22:57:31', 1792, '2009-11-02 22:57:31', '2009-11-02 22:57:31', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/12/original/bernoulli_m_te.txt
+Completed in 24ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:59:20) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.8>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 22:59:20', 2256, '2009-11-02 22:59:20', '2009-11-02 22:59:20', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/13/original/burkertm_te.txt
+Completed in 24ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-02 23:59:45) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.9>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bernoulli_m_te.txt', '2009-11-02 22:59:45', 1792, '2009-11-02 22:59:45', '2009-11-02 22:59:45', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/14/original/bernoulli_m_te.txt
+Completed in 24ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 00:00:19) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.10>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 23:00:19', 2256, '2009-11-02 23:00:19', '2009-11-02 23:00:19', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/15/original/burkertm_te.txt
+Completed in 26ms (View: 3, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 00:15:42) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.11>}}
+  [4;36;1mUpload Create (0.6ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 23:15:42', 2256, '2009-11-02 23:15:42', '2009-11-02 23:15:42', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/16/original/burkertm_te.txt
+Completed in 25ms (View: 3, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 00:17:06) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.1>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 23:17:06', 2256, '2009-11-02 23:17:06', '2009-11-02 23:17:06', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/17/original/burkertm_te.txt
+Completed in 26ms (View: 3, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 00:18:37) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.2>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-02 23:18:37', 2256, '2009-11-02 23:18:37', '2009-11-02 23:18:37', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/18/original/burkertm_te.txt
+Redirected to http://localhost:3000/uploads/18
+Completed in 22ms (DB: 0) | 302 Found [http://localhost/uploads/create]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-03 00:18:37) [GET]
+  Parameters: {"id"=>"18"}
+  [4;35;1mUpload Load (0.4ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 18) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/18]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 00:19:12) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.3>}}
+  [4;36;1mUpload Create (0.4ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bernoulli_m_te.txt', '2009-11-02 23:19:12', 1792, '2009-11-02 23:19:12', '2009-11-02 23:19:12', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/19/original/bernoulli_m_te.txt
+Completed in 24ms (View: 1, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-03 13:14:18) [GET]
+
+ActionController::RoutingError (No route matches "/documents/1/edit" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-03 16:42:20) [GET]
+
+ActionController::RoutingError (No route matches "/documents/1/edit" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UploadsController#new (for 127.0.0.1 at 2009-11-03 20:35:03) [GET]
+Rendering template within layouts/uploads
+Rendering uploads/new
+Completed in 919ms (View: 665, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-03 20:36:15) [GET]
+
+ActionController::RoutingError (No route matches "/documents/1/edit" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-03 21:47:34) [GET]
+
+ActionController::RoutingError (No route matches "/documents/1/edit" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-03 23:24:49) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.4>}}
+  [4;35;1mUpload Create (42.7ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-03 22:24:50', 2256, '2009-11-03 22:24:50', '2009-11-03 22:24:50', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/20/original/burkertm_te.txt
+Completed in 816ms (View: 33, DB: 43) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-04 17:28:22) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.5>}}
+  [4;36;1mUpload Create (59.0ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-04 16:28:26', 2256, '2009-11-04 16:28:26', '2009-11-04 16:28:26', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/21/original/burkertm_te.txt
+Completed in 3537ms (View: 3, DB: 59) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 13:02:21) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.1>}}
+  [4;35;1mUpload Create (20.6ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-06 12:02:21', 2256, '2009-11-06 12:02:21', '2009-11-06 12:02:21', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/22/original/burkertm_te.txt
+Completed in 412ms (View: 20, DB: 21) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 13:03:05) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.2>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bernoulli_m_te.txt', '2009-11-06 12:03:05', 1792, '2009-11-06 12:03:05', '2009-11-06 12:03:05', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/23/original/bernoulli_m_te.txt
+Completed in 116ms (View: 2, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 22:12:23) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.6412.3>}}
+  [4;35;1mUpload Create (0.6ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('burkertm_te.txt', '2009-11-06 21:12:23', 2256, '2009-11-06 21:12:23', '2009-11-06 21:12:23', 'text/plain')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/kod/fileupload/public/system/attachments/24/original/burkertm_te.txt
+Completed in 149ms (View: 38, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 22:12:38) [GET]
+  [4;36;1mUpload Load (22.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 467ms (View: 1, DB: 22) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 22:28:20) [GET]
+  [4;36;1mUpload Load (2.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 300ms (View: 77, DB: 3) | 200 OK [http://localhost/uploads]
+  [4;36;1mUpload Delete all (1.9ms)[0m   [0;1mDELETE FROM "uploads" WHERE 1=1[0m
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 22:29:18) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:12:30) [GET]
+  [4;36;1mUpload Load (0.4ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 5ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:13:16) [POST]
+  Parameters: {"name"=>"upload[attachment]", "file"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.0>}
+  [4;35;1mUpload Create (39.9ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-06 22:13:16', NULL, NULL, '2009-11-06 22:13:16', NULL)[0m
+[paperclip] Saving attachments.
+Completed in 184ms (View: 1, DB: 40) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:13:23) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:13:30) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:14:13) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:14:28) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:14:51) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:14:55) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:15:40) [GET]
+  [4;36;1mUpload Load (1.8ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 2) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:15:52) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:16:17) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:16:40) [GET]
+  [4;35;1mUpload Load (2.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 3) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:16:53) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:24:14) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:25:45) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 76ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:26:12) [GET]
+  [4;35;1mUpload Load (0.9ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:26:21) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 21ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:26:42) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:27:09) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:27:20) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:30:19) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:33:20) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:33:59) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:34:05) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:34:51) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:35:03) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:38:57) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 24ms (View: 8, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:39:02) [POST]
+  Parameters: {"name"=>"upload[attachment]", "file"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.1>}
+  [4;35;1mUpload Create (0.7ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-06 22:39:02', NULL, NULL, '2009-11-06 22:39:02', NULL)[0m
+[paperclip] Saving attachments.
+Completed in 11ms (View: 1, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:39:58) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:40:09) [POST]
+  Parameters: {"name"=>"upload[attachment]", "file"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.0>}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES(NULL, '2009-11-06 22:40:09', NULL, NULL, '2009-11-06 22:40:09', NULL)[0m
+[paperclip] Saving attachments.
+Completed in 14ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:40:57) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:46:04) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:46:09) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.2>}}
+  [4;36;1mUpload Create (0.4ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('2jf0evr.jpg', '2009-11-06 22:46:09', 175424, '2009-11-06 22:46:09', '2009-11-06 22:46:09', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/28/original/2jf0evr.jpg
+Completed in 145ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/create]
+  [4;36;1mUpload Delete all (2.5ms)[0m   [0;1mDELETE FROM "uploads" WHERE 1=1[0m
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:47:08) [GET]
+  [4;35;1mUpload Load (0.4ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:47:13) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.3>}}
+  [4;36;1mUpload Create (0.4ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('2jf0evr.jpg', '2009-11-06 22:47:13', 175424, '2009-11-06 22:47:13', '2009-11-06 22:47:13', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/29/original/2jf0evr.jpg
+Completed in 26ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:50:16) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 21ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-06 23:50:29) [GET]
+  [4;36;1mUpload Load (0.5ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 98ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:50:38) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.0>}}
+  [4;35;1mUpload Create (0.4ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent', '2009-11-06 22:50:38', 11864, '2009-11-06 22:50:38', '2009-11-06 22:50:38', 'application/octet-stream')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+Completed in 261ms (View: 6, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-06 23:51:03) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.62195.1>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('canon.pdf', '2009-11-06 22:51:03', 3860356, '2009-11-06 22:51:03', '2009-11-06 22:51:03', 'application/pdf')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/31/original/canon.pdf
+Completed in 159ms (View: 1, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:03:13) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:11:19) [GET]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:11:32) [GET]
+  [4;35;1mUpload Load (0.8ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 2, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:12:03) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 18ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:14:04) [GET]
+  [4;35;1mUpload Load (0.8ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:14:06) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:14:52) [GET]
+  [4;35;1mUpload Load (1.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 3, DB: 2) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:14:54) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:18:34) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:31:42) [GET]
+  [4;36;1mUpload Load (0.8ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:31:57) [GET]
+  [4;35;1mUpload Load (0.8ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:34:08) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:34:32) [GET]
+  [4;35;1mUpload Load (1.2ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:35:16) [GET]
+  [4;36;1mUpload Load (0.8ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:36:10) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:36:34) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:36:41) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:40:27) [GET]
+  [4;36;1mUpload Load (1.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 19ms (View: 1, DB: 2) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:40:35) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 18ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:40:54) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 16ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:41:07) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:41:25) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 84ms (View: 64, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:41:38) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:41:44) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:42:05) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:42:16) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:42:23) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:42:32) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:42:36) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:43:29) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:45:39) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:45:46) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:46:31) [GET]
+  [4;35;1mUpload Load (0.8ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:46:45) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 17ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:46:54) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 93ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:47:01) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:47:09) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:47:33) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 19ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:47:45) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:48:14) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:48:31) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 2, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:49:40) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:49:51) [GET]
+  [4;35;1mUpload Load (2.2ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 2) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:50:43) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:52:16) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:52:26) [GET]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:54:29) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 00:54:44) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:03:11) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:03:27) [GET]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:03:50) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:03:57) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:26:19) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-07 01:50:49) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#new (for 127.0.0.1 at 2009-11-07 11:37:56) [GET]
+Rendering template within layouts/uploads
+Rendering uploads/new
+Completed in 1852ms (View: 1836, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:00:57) [GET]
+  [4;36;1mUpload Load (1.0ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 317ms (View: 88, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:06:09) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:08:46) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:16:24) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 44ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:17:18) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 62ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:17:56) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:18:21) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:19:11) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 4, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:20:10) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:20:17) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:20:58) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:27:28) [GET]
+  [4;35;1mUpload Load (0.8ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:27:47) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:28:33) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 8ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:29:24) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:49:31) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:49:45) [GET]
+  [4;36;1mUpload Load (0.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 22:59:37) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:00:09) [GET]
+  [4;36;1mUpload Load (0.8ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:01:04) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:01:33) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:01:48) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:02:42) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:04:03) [GET]
+  [4;35;1mUpload Load (1.3ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 25ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:04) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (13.4ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 256ms (View: 237, DB: 13) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:09) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:11) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 70ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:13) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:04:14) [GET]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:19) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.3ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:04:50) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:05:10) [GET]
+  [4;35;1mUpload Load (0.6ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:05:11) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:05:13) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:05:15) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.3ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Rendering template within layouts/uploads
+Rendering uploads/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/uploads/30]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:08:00) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Sending data 
+
+NoMethodError (undefined method `bytesize' for #<Paperclip::Attachment:0x25d0794>):
+  app/controllers/uploads_controller.rb:15:in `show'
+
+Rendered rescues/_trace (85.8ms)
+Rendered rescues/_request_and_response (12.7ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:08:12) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+
+NoMethodError (undefined method `data' for #<Paperclip::Attachment:0x27e38b0>):
+  app/controllers/uploads_controller.rb:15:in `show'
+
+Rendered rescues/_trace (26.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:09:00) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:09:10) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:09:11) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:11:24) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.3ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:11:33) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:12:20) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:12:22) [GET]
+  Parameters: {"id"=>"29"}
+  [4;35;1mUpload Load (0.3ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 29) [0m
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/29]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/29/original/2jf0evr.jpg
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:12:29) [GET]
+  Parameters: {"id"=>"31"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 31) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/31]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/31/original/canon.pdf
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:12:46) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:12:49) [GET]
+  Parameters: {"id"=>"31"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 31) [0m
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/31]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/31/original/canon.pdf
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:12:54) [GET]
+  Parameters: {"id"=>"31"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 31) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/31]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/31/original/canon.pdf
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:13:08) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.3ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:13:15) [GET]
+  Parameters: {"id"=>"29"}
+  [4;35;1mUpload Load (0.3ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 29) [0m
+Completed in 42ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/29]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/29/original/2jf0evr.jpg
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:13:31) [GET]
+  Parameters: {"id"=>"29"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 29) [0m
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/29]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/29/original/2jf0evr.jpg
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:14:05) [GET]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:14:07) [GET]
+  Parameters: {"id"=>"29"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 29) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/29]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/29/original/2jf0evr.jpg
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:14:14) [GET]
+  Parameters: {"id"=>"31"}
+  [4;35;1mUpload Load (0.2ms)[0m   [0mSELECT * FROM "uploads" WHERE ("uploads"."id" = 31) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/31]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/31/original/canon.pdf
+
+
+Processing UploadsController#show (for 127.0.0.1 at 2009-11-18 23:14:21) [GET]
+  Parameters: {"id"=>"30"}
+  [4;36;1mUpload Load (0.2ms)[0m   [0;1mSELECT * FROM "uploads" WHERE ("uploads"."id" = 30) [0m
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads/30]
+Streaming file /Users/IQue/kod/fileupload/public/system/attachments/30/original/30.Rock.S04E04.720p.HDTV.X264-DIMENSION.mkv.torrent
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:14:40) [OPTIONS]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 13ms (View: 2, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:14:46) [OPTIONS]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:14:51) [OPTIONS]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:14:55) [OPTIONS]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:15:00) [OPTIONS]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:15:07) [GET]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:15:16) [OPTIONS]
+  [4;35;1mUpload Load (0.7ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:15:25) [OPTIONS]
+  [4;36;1mUpload Load (0.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 22ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-18 23:15:38) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.71956.0>}}
+  [4;35;1mUpload Create (81.8ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('2jf0evr.jpg', '2009-11-18 22:15:38', 175424, '2009-11-18 22:15:38', '2009-11-18 22:15:38', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/32/original/2jf0evr.jpg
+Completed in 107ms (View: 1, DB: 82) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:15:46) [OPTIONS]
+  [4;36;1mUpload Load (0.7ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-18 23:15:52) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/AU/AUt2QTAGETO5th-9Jsom1E+++TI/-Tmp-/RackMultipart.71956.1>}}
+  [4;35;1mUpload Create (291.6ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('2jf0evr.jpg', '2009-11-18 22:15:53', 175424, '2009-11-18 22:15:53', '2009-11-18 22:15:53', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/IQue/kod/fileupload/public/system/attachments/33/original/2jf0evr.jpg
+Completed in 1342ms (View: 1, DB: 292) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-18 23:16:10) [GET]
+  [4;36;1mUpload Load (4.9ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 19ms (View: 1, DB: 5) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:46:30) [GET]
+  [4;36;1mUpload Load (1.6ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 275ms (View: 36, DB: 2) | 200 OK [http://localhost/uploads]
+  [4;36;1mUpload Delete all (3.1ms)[0m   [0;1mDELETE FROM "uploads" WHERE 1=1[0m
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:47:00) [GET]
+  [4;35;1mUpload Load (0.5ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 9ms (View: 1, DB: 0) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-19 15:47:15) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.1192.0>}}
+  [4;36;1mUpload Create (1.2ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('bokeh.jpg', '2009-11-19 14:47:15', 678817, '2009-11-19 14:47:15', '2009-11-19 14:47:15', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/Dropbox/fileupload/public/system/attachments/34/original/bokeh.jpg
+Completed in 178ms (View: 2, DB: 1) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-19 15:47:54) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.1192.1>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('iPhone_intro.pdf', '2009-11-19 14:47:55', 176640, '2009-11-19 14:47:55', '2009-11-19 14:47:55', 'application/pdf')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/Dropbox/fileupload/public/system/attachments/35/original/iPhone_intro.pdf
+Completed in 34ms (View: 2, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-19 15:48:08) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.1192.0>}}
+  [4;36;1mUpload Create (0.5ms)[0m   [0;1mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('pragpub-2009-10.pdf', '2009-11-19 14:48:08', 14213961, '2009-11-19 14:48:08', '2009-11-19 14:48:08', 'application/pdf')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/Dropbox/fileupload/public/system/attachments/36/original/pragpub-2009-10.pdf
+Completed in 475ms (View: 1, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#create (for 127.0.0.1 at 2009-11-19 15:48:31) [POST]
+  Parameters: {"upload"=>{"attachment"=>#<File:/var/folders/lS/lSwcJvp1ElW0w7T7+TX93E+++TI/-Tmp-/RackMultipart.1192.1>}}
+  [4;35;1mUpload Create (0.5ms)[0m   [0mINSERT INTO "uploads" ("attachment_file_name", "updated_at", "attachment_file_size", "attachment_updated_at", "created_at", "attachment_content_type") VALUES('dash.jpg', '2009-11-19 14:48:31', 367840, '2009-11-19 14:48:31', '2009-11-19 14:48:31', 'image/jpeg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving /Users/ique/Dropbox/fileupload/public/system/attachments/37/original/dash.jpg
+Completed in 41ms (View: 2, DB: 0) | 201 Created [http://localhost/uploads/create]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:50:10) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:50:56) [GET]
+  [4;35;1mUpload Load (1.1ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 75ms (View: 5, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:51:20) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 16ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:51:57) [GET]
+  [4;35;1mUpload Load (1.1ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:52:13) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 17ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:52:28) [GET]
+  [4;35;1mUpload Load (1.1ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:54:34) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:54:41) [GET]
+  [4;35;1mUpload Load (1.1ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:54:49) [GET]
+  [4;36;1mUpload Load (1.2ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:54:53) [GET]
+  [4;35;1mUpload Load (1.1ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:54:57) [GET]
+  [4;36;1mUpload Load (1.1ms)[0m   [0;1mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]
+
+
+Processing UploadsController#index (for 127.0.0.1 at 2009-11-19 15:55:01) [GET]
+  [4;35;1mUpload Load (1.3ms)[0m   [0mSELECT * FROM "uploads" [0m
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://localhost/uploads]

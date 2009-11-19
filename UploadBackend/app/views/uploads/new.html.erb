@@ -1,0 +1,15 @@
+<h1>New upload</h1>
+
+<% form_for(@upload, :html => {:multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	
+	<p>
+		<%= f.file_field 'attachment'%>
+	</p>
+	
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', uploads_path %>
